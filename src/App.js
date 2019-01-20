@@ -1,28 +1,27 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import FriendCard from "./components/FriendCard";
+import Nav from "./components/Nav";
+import Wrapper from "./components/Wrapper";
+import Title from "./components/Title";
+import friends from "./friends.json";
+import "./App.css";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+const Container = props => (
+  <div className={`container${props.fluid ? "-fluid" : ""}`}>
+    {props.children}
+  </div>
+);
+
+const Row = props => (
+  <div className={`row${props.fluid ? "-fluid" : ""}`}>{props.children}</div>
+);
+
+const Column = props => {
+  const size = props.size
+    .split(" ")
+    .map(size => "col-" + size)
+    .join(" ");
+  return <div className={size}>{props.children}</div>;
+};
 
 export default App;
