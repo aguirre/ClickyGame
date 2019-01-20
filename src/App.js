@@ -78,6 +78,38 @@ class App extends Component {
     let shuffledFriends = shuffleFriends(friends);
     this.setState({ friends: shuffledFriends });
   };
+
+  render() {
+    return (
+      <Wrapper>
+        <Nav
+          title={<img src="https://i.imgur.com/4uyo9eS.png" alt="banner" />}
+          score={this.state.currentScore}
+          topScore={this.state.topScore}
+          gameMsg={this.state.gameMsg}
+        />
+
+        <Title>Click on each character without hitting any duplicates!</Title>
+
+        <Container>
+          <Row>
+            {this.state.friends.map(friend => (
+              <Column size="md-3 sm-6" key={friend.id}>
+                <FriendCard
+                  handleClick={this.handleClick}
+                  handleIncrement={this.handleIncrement}
+                  handleReset={this.handleReset}
+                  handleShuffle={this.handleShuffle}
+                  id={friend.id}
+                  image={friend.image}
+                />
+              </Column>
+            ))}
+          </Row>
+        </Container>
+      </Wrapper>
+    );
+  }
 }
 
 export default App;
